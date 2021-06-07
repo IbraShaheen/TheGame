@@ -1,6 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
+// styling
+import{SubParent , Butt} from "./styles"
+
+import "./App.css";
+
 
 function App() {
   const [userNumber, setUserNumber] = useState();
@@ -28,7 +33,7 @@ function App() {
       console.log("R", random);
 
       if (random == userNumber) {
-        console.log("Winer");
+        //console.log("Winer");
       }
 
       setAttempts(attempts + 1);
@@ -58,15 +63,17 @@ function App() {
   };
 
   return (
-    <center>
+    
+    <SubParent>
+      <div className="Parent">
       <div>
         <p>
           The Monster stirs beneath the tumultuous waves, thinking of a number
           that will end the world Find the secret number and use it to banish
-          The Monster
+          the monster
         </p>
         <input
-          placeholder="1 - 100"
+          placeholder="Pick A Number From 1 to 100"
           type="number"
           min="1"
           maxLength="3"
@@ -75,26 +82,30 @@ function App() {
           onChange={handleChange}
           style={{ maxLength: 3 }}
         />
-        <button type="submit" onClick={compare}>
-          Submit
-        </button>{" "}
+
+       <br />
         <br />
+        <Butt type="submit" onClick={compare}>
+          Banish
+        </Butt>
         <br />
-        <button type="reset" onClick={fullAttempt}>
-          Reset
-        </button>
-        {/* clickedNum = number(clickedNum)
-                  {(clickedNum - random) <= 5 ?  <p> too close  ⬆️add(0-4)</p>     : <p></p>}
-                 {(clickedNum - random) <= -5 ? <p>  too close  ⬇️subtract(0-4)</p>     : <p></p>}  */}
-                 
-        {clickedNum > random ? <p> Too Strong 
-          <hr/> That was so far off it banished some other unrelated elder beast!
+        <Butt type="reset" onClick={fullAttempt}>
+          Play again
+        </Butt>
+
+                    {/* clickedNum = number(clickedNum)
+                  {(clickedNum - random) < 5 ? <p>  too close  ⬆️add(0-4)</p>     : <p></p>}
+                 {(clickedNum - random) < -5 ? <p>  too close  ⬇️subtract(0-4)</p>     : <p></p>}  */}
+
+
+        {clickedNum > random ? <p> Too Strong ⬇️ Go Down
+          <br/><br/> That was so far off it banished some other unrelated elder beast!
         </p> : <p></p>}
-        {clickedNum < random ? <p> Too Weak 
-          <hr/> That was so far off it banished some other unrelated elder beast!
+        {clickedNum < random ? <p> Too Weak ⬆️ Go Up
+          <br/><br/> That was so far off it banished some other unrelated elder beast!
         </p> : <p></p>}
         {clickedNum == random ? (
-          <p> "Correct Answer" </p>
+          <b> "Correct Answer" <br/> ⭐️ 🌟 ✨ ⚡️ ☄️ 💥 🔥 <br/> You did it </b>
         ) : (
           <p> {console.log(random)}</p>
         )}
@@ -103,7 +114,9 @@ function App() {
         </div>
         <p> Your attempts : {attempts} </p>
       </div>
-    </center>
+      </div>
+    </SubParent>
+    
   );
 }
 
